@@ -7,9 +7,19 @@ function App() {
   const inputValue = (event) => {
     setInput(input.concat(event.target.value));
   };
-  // const answer = (input) => {
-  //   eval(input);
-  // };
+
+  const clear = () => {
+    setInput("");
+  };
+
+  const calculator = () => {
+    setInput(eval(input));
+  };
+
+  const del = () => {
+    setInput(input.slice(0, -1));
+  };
+
   return (
     <>
       <div className="calculator-wrapper">
@@ -19,8 +29,8 @@ function App() {
               <input type="text" value={input} />
             </div>
             <div>
-              <input type="button" value="AC" />
-              <input type="button" value="DE" />
+              <input type="button" value="AC" onClick={clear} />
+              <input type="button" value="DE" onClick={del} />
               <input type="button" value="." onClick={inputValue} />
               <input type="button" value="/" onClick={inputValue} />
             </div>
@@ -49,10 +59,7 @@ function App() {
                 type="button"
                 value="="
                 className="equals-to"
-                onClick={(input) => {
-                  setInput(eval(input));
-                  console.log(input);
-                }}
+                onClick={calculator}
               />
             </div>
           </form>
