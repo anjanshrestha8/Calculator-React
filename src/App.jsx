@@ -2,11 +2,14 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [input, setInput] = useState();
+  const [input, setInput] = useState("");
 
   const inputValue = (event) => {
     setInput(input.concat(event.target.value));
   };
+  // const answer = (input) => {
+  //   eval(input);
+  // };
   return (
     <>
       <div className="calculator-wrapper">
@@ -42,7 +45,15 @@ function App() {
             <div>
               <input type="button" value="00" onClick={inputValue} />
               <input type="button" value="0" onClick={inputValue} />
-              <input type="button" value="=" className="equals-to" />
+              <input
+                type="button"
+                value="="
+                className="equals-to"
+                onClick={(input) => {
+                  setInput(eval(input));
+                  console.log(input);
+                }}
+              />
             </div>
           </form>
         </div>
